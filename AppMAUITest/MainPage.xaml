@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppMAUITest.MainPage"
+             xmlns:control="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+             xmlns:controlgrd2="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+             xmlns:dg="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
+             xmlns:local="clr-namespace:AppMAUITest"
+             xmlns:vm="clr-namespace:AppMAUITest"
+             >
+
+
+    
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <!--<Grid WidthRequest="480" HeightRequest="100" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition Width="330"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"></RowDefinition>
+                </Grid.RowDefinitions>-->
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+                    <Label FontSize="12" FontAttributes="Bold" Text="Bodega:" HeightRequest="35" VerticalTextAlignment="Center" ></Label>
+                    <Picker x:Name="cboBodega" FontSize="12"
+                            Title="Seleccione una bodega"
+                            ItemsSource="{ Binding Bodegas }"
+                            ItemDisplayBinding="{Binding Name}"
+                            SelectedItem="{Binding ID}"
+                            SelectedIndexChanged="cboBodega_SelectionChanged"
+                            HeightRequest="35" WidthRequest="250"
+                            BindingContext="{Binding Source = {local:BodegaDataViewModel}}">
+                    </Picker>
+                </StackLayout>
+            <!--</Grid>-->
+
+            <ScrollView Orientation="Both">
+                <!--<Grid RowDefinitions="50,*">-->
+                    <dg:DataGrid x:Name="grdDatos" Grid.Row="1" 
+                                 Background="#FFFFFF" BackgroundColor="#FFFFFF"
+                                 ItemSelected="grdDatos_ItemSelected"
+                                 ItemsSource="{ Binding CofresUrnas }" 
+                                 SelectedItem="{ Binding SelectedCofreUrna }"
+                                 SelectionEnabled="true"
+                                 RowHeight="70" HeaderHeight="50" 
+                                 HeaderBackground="#C2A636"  
+                                 IsRefreshing="False"
+                                 HeightRequest="300" WidthRequest="480"
+                                 BindingContext="{Binding Source = {vm:ListaCofresUrnasDataViewModel}}">
+                        <dg:DataGrid.NoDataView>
+                            <Label Text="No hay informacion disponible" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+                        </dg:DataGrid.NoDataView>
+                        <dg:DataGrid.Columns>
+                            <dg:DataGridColumn Title="Codigo" PropertyName="codigo" Width="80"></dg:DataGridColumn>
+                            <dg:DataGridColumn Title="Producto" PropertyName="producto" Width="100"></dg:DataGridColumn>
+                            <dg:DataGridColumn Title="Inhumado" PropertyName="inhumado" Width="200"></dg:DataGridColumn>
+                            <dg:DataGridColumn Title="Proveedor" PropertyName="nombreProveedor" Width="100"></dg:DataGridColumn>
+                        </dg:DataGrid.Columns>
+                        <dg:DataGrid.RowsBackgroundColorPalette>
+                            <dg:PaletteCollection>
+                                <Color>#F2F2F2</Color>
+                                <Color>#FFFFFF</Color>
+                            </dg:PaletteCollection>
+                        </dg:DataGrid.RowsBackgroundColorPalette>
+                    </dg:DataGrid>
+            <!--</Grid>-->
+            </ScrollView>
+            <!--<controlgrd2:SfDataGrid x:Name="grdDatos"
+                                   HeightRequest="400" WidthRequest="300"
+                                   ItemsSource="{ Binding CofresUrnas }"  CellTapped="grdDatos_CellTapped"
+                                   BindingContext="{Binding Source = {vm:ListaCofresUrnasDataViewModel}}">
+            </controlgrd2:SfDataGrid>-->
+
+
+            <!--<Image
+                Source="dotnet_bot.png"
+                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                HeightRequest="200"
+                HorizontalOptions="Center" />
+            -->
+            <DatePicker x:Name="dtpFecha" Format="yyyy-MM-dd" />
+            
+            <!--<Label
+                Text="Hello, World!"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="32"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="Welcome to .NET Multi-platform App UI"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
+                FontSize="18"
+                HorizontalOptions="Center" />-->
+            
+            <Label
+                x:Name="txtTelephoneID"
+                Text=""
+                SemanticProperties.HeadingLevel="Level2"
+                FontSize="18"
+                HorizontalOptions="Center" />
+            
+            <Button
+                x:Name="CounterBtn"
+                Text="Click me"
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="OnCounterClicked"
+                HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+    
+
+</ContentPage>
